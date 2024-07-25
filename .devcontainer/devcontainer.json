@@ -1,0 +1,26 @@
+{
+    "name": "grpc-onion",
+    "build": {
+        "context": "..",
+        "dockerfile": "../Dockerfile",
+        "target": "vscode"
+    },
+    "workspaceFolder": "/server/grpc-onion",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "golang.Go",
+                "GitHub.copilot",
+                "zxh404.vscode-proto3"
+            ]
+        }
+    },
+    "mounts": [
+        "source=${localWorkspaceFolder}/../,target=/server,type=bind"
+    ],
+	"forwardPorts": [
+		3000
+	],
+    "remoteUser": "root",
+    "postCreateCommand": "/bin/sh .devcontainer/post_create.sh"
+}

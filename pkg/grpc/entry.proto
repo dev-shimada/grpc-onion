@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option go_package = "pkg/grpc";
+
+package grpc;
+
+import "google/protobuf/timestamp.proto";
+
+
+service EntryService {
+	rpc Search (SearchRequest) returns (SearchResponse); 
+  rpc Create (CreateRequest) returns (CreateResponse);
+}
+
+message SearchRequest {
+	string id = 1;
+}
+
+message SearchResponse {
+	string id = 1;
+  string user = 2;
+  string status = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp deleted_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+message CreateRequest {
+  string id = 1;
+  string user = 2;
+}
+
+message CreateResponse {
+  string id = 1;
+  string user = 2;
+  string status = 3;
+  google.protobuf.Timestamp created_at = 4;
+  google.protobuf.Timestamp deleted_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
