@@ -12,7 +12,7 @@ docker build . -t grpc-onion
 
 ### Run
 ```bash
-docker run --rm grpc-onion:latest
+docker run --rm -p 3000:3000 -v $(pwd)/onion.db:/onion.db grpc-onion:latest
 ```
 
 ## Go
@@ -35,15 +35,18 @@ go run cmd/main.go
 ```bash
 grpcurl -plaintext localhost:3000 list
 ```
+```bash
+grpcurl -plaintext localhost:3000 list entry.EntryService 
+```
 
 ### Search
 ```bash
-grpcurl -plaintext -d '{"id": "1"}' localhost:3000 grpc.EntryService.Search
+grpcurl -plaintext -d '{"id": "1"}' localhost:3000 entry.EntryService.Search
 ```
 
 ### Create
 ```bash
-grpcurl -plaintext -d '{"user": "TES00001"}' localhost:3000 grpc.EntryService.Create
+grpcurl -plaintext -d '{"user": "TES00001"}' localhost:3000 entry.EntryService.Create
 ```
 
 ## Test data
@@ -52,6 +55,7 @@ sqlite3 onion.db < entry.sql
 ```
 
 ## proto
+### buf cli
 ```bash
-protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative pkg/grpc/entry.proto
+buf generate
 ```

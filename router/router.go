@@ -3,7 +3,7 @@ package router
 import (
 	"context"
 	"onion/interface/handler"
-	entrypb "onion/pkg/grpc"
+	entrypb "onion/proto/entry"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"

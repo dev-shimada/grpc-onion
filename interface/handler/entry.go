@@ -3,7 +3,7 @@ package handler
 import (
 	"context"
 
-	entrypb "onion/pkg/grpc"
+	entrypb "onion/proto/entry"
 	"onion/usecase"
 
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -32,7 +32,7 @@ func (eh *entryHandler) Search(ctx context.Context, req *entrypb.SearchRequest) 
 	if res.DeletedAt.IsZero() {
 		deletedAt = nil
 	} else {
-		timestamppb.New(res.DeletedAt)
+		deletedAt = timestamppb.New(res.DeletedAt)
 	}
 
 	return &entrypb.SearchResponse{

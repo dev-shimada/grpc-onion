@@ -1,0 +1,21 @@
+version: v2
+managed:
+  enabled: true
+  override:
+    - file_option: go_package_prefix
+      # module_name   : entry
+      # relative_path : proto/entry
+      value: proto/entry
+  # Remove `disable` field if googleapis is not used
+  disable:
+    - module: buf.build/googleapis/googleapis
+      file_option: go_package_prefix
+plugins:
+  - remote: buf.build/grpc/go:v1.4.0
+    out: proto/entry
+    opt: 
+      - paths=source_relative
+  - remote: buf.build/protocolbuffers/go
+    out: proto/entry
+    opt: 
+      - paths=source_relative

@@ -5,6 +5,8 @@ apt-get update && apt-get install -y vim git sqlite3 unzip
 
 # tools
 go install -v golang.org/x/tools/gopls@latest
+go install -v github.com/go-delve/delve/cmd/dlv@latest
+go install honnef.co/go/tools/cmd/staticcheck@latest
 go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
 echo "source /usr/share/bash-completion/completions/git" >> ~/.bashrc
 git config --local core.editor vim

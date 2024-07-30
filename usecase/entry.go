@@ -36,7 +36,8 @@ func (eu *entryUsecase) Create(ctx context.Context, user string) (*model.Entry, 
 		return nil, err
 	}
 
-	now := time.Now()
+	// truncate to second
+	now := time.Now().Truncate(time.Second)
 	entry := model.Entry{
 		ID:        id.String(),
 		User:      user,

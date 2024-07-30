@@ -23,5 +23,7 @@ COPY . /service
 RUN CGO_ENABLED=1 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o app cmd/main.go
 
 FROM --platform=$BUILDPLATFORM gcr.io/distroless/base-debian12:latest
-COPY --from=build /service/app /main
+COPY --chown=${USERNAME}:${GROUPNAME} --from=build /service/app /main
+
+USER ${USERNAME}
 ENTRYPOINT [ "/main" ]
